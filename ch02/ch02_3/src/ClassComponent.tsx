@@ -20,6 +20,7 @@ export type ClassComponentProps = {
 }
 export default class ClassComponent extends Component<ClassComponentProps> {
   render() {
+    // 속성의 역할 :: 정보전달, 리렌더링
     const {href, text, ...rest} = this.props
     return (
       <li>
