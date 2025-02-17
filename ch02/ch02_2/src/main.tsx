@@ -27,10 +27,11 @@ const children2 = [0, 1, 2].map((n: number) => <h3 key={n}>React {n}</h3>)
 const children3 = D.makeArray(10).map((notUsed, index) => (
   <div key={index}>
     <p>{D.randomId()}</p>
-    <p>{D.randomId()}</p>
-    <p>{D.randomId()}</p>
-    <p>{D.randomId()}</p>
-    <p>{D.randomId()}</p>
+    <p>{D.randomName()}</p>
+    <p>{D.randomJobTitle()}</p>
+    <p>{D.randomSentence()}</p>
+    <p>{D.randomAvatar()}</p>
+    <img src={D.randomAvatar()} width={100} height={100} />
   </div>
 ))
 
@@ -38,9 +39,16 @@ const children3 = D.makeArray(10).map((notUsed, index) => (
 // createRoot(document.getElementById('root')!).render({children})
 
 createRoot(document.getElementById('root')!).render(
-  <div>{children2}</div>
+  // <div>{children2}</div>
+
   // <>
   //   <ul>{children}</ul>
   //   {children2}
   // </>
+
+  <div>
+    <ul>{children}</ul>
+    {children2}
+    {children3}
+  </div>
 )
