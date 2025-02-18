@@ -5,7 +5,7 @@ import type {SyntheticEvent} from 'react'
 export default function ReactOnClick() {
   const onClick = function (e: SyntheticEvent) {
     const {isTrusted, target, bubbles} = e
-    console.log('3.mouse click occurs on rootDiv', isTrusted, target, bubbles)
+    console.log('3. mouse click also occurs on rootDiv.', isTrusted, target, bubbles)
   }
   return (
     <div>
