@@ -4,17 +4,13 @@
   padding: 2rem;
   text-align: center;
 }
+/* prettier-ignore */
 #root > div > div {
-  boder: 1px dotted #aaa;
-  boder-radius: 5px;
-  margin: 10 0px;
-  padding: 5px;
-  cursor: pointer;
+  border: 1px dashed #aaa;border-radius: 5px;
+  margin: 10px 0;padding: 5px;cursor: pointer;
 }
-#root> div > div : hover {
-  boder: 1px solid black;
-}
-
+/* prettier-ignore */
+#root > div > div:hover {border: 1px solid black;}
 .logo {
   height: 6em;
   padding: 1.5em;
