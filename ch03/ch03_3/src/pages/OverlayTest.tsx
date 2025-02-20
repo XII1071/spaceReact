@@ -6,7 +6,7 @@ export default function OverlayTest() {
       <Title>OverlayTest</Title>
       <Overlay opacityClass="bg-black/10">
         <Div className="relative flex items-center justify-center p-8 bg-white h-1/2">
-          <Div className="absolute" right="1rem" top="1rem">
+          <Div className="absolute bg-yellow-50" right="1rem" top="1rem">
             <Icon name="close" className="text-gray-500" />
           </Div>
           <p className="text-5xl">modal dialog box</p>

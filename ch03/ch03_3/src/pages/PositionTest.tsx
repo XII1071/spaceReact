@@ -12,7 +12,7 @@ export default function PositionTest() {
       <Title>PositionTest</Title>
       <Div className="relative border-2 border-gray-500"
         src={src} height="10rem" style={{overflow: 'auto'}}>
-        <Div className="absolute p-2 text-white bg-red-500 z-50"
+        <Div className="absolute p-2 text-white bg-red-500 z-10"
           left="0.5rem" top="0.5rem">{icons}</Div>
         <Div className="absolute p-2 text-white bg-blue-500 z-30"
           left="1rem" top="1rem">{icons}</Div>
