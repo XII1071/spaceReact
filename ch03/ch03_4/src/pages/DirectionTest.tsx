@@ -12,20 +12,20 @@ export default function DirectionTest() {
   return (
     <section className="mt-4">
       <Title>DirectionTest</Title>
-      <Div className="flex flex-row mt-4">
-        <Div className="mr-2">
+      <Div className="flex flex-row mt-4 border-2 m-2">
+        <Div className="mr-2  border-2 m-2">
           <Subtitle>flex-row</Subtitle>
           <Div className="flex flex-row p-4">{boxes}</Div>
         </Div>
-        <Div className="mr-2">
+        <Div className="mr-2  border-2 m-2">
           <Subtitle>flex-row-reverse</Subtitle>
           <Div className="flex flex-row-reverse p-4 bg-slate-400">{boxes}</Div>
         </Div>
-        <Div className="mr-2">
+        <Div className="mr-2  border-2 m-2">
           <Subtitle>flex-col</Subtitle>
           <Div className="flex flex-col p-4">{boxes}</Div>
         </Div>
-        <Div className="mr-2">
+        <Div className="mr-2  border-2 m-2">
           <Subtitle>flex-col-reverse</Subtitle>
           <Div className="flex flex-col-reverse p-4">{boxes}</Div>
         </Div>

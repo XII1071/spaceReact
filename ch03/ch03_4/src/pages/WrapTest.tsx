@@ -12,32 +12,32 @@ export default function WrapTest() {
   return (
     <div className="mt-4">
       <Title>WrapTest</Title>
-      <Div className="flex flex-col w-1/2 mt-4 bg-gray-200">
-        <Div className="mt-2">
+      <Div className="flex flex-col w-1/2 mt-4 bg-gray-200  border-2 m-2">
+        <Div className="mt-2  border-2 m-2">
           <Subtitle>flex-row flex-wrap</Subtitle>
           <Div className="flex flex-row flex-wrap p-4 bg-yellow-200">{boxes}</Div>
         </Div>
-        <Div className="mt-2">
+        <Div className="mt-2  border-2 m-2">
           <Subtitle>flex-row-reverse flex-wrap-reverse</Subtitle>
           <Div className="flex flex-row-reverse flex-wrap-reverse p-4">{boxes}</Div>
         </Div>
-        <Div className="mt-2 ">
+        <Div className="mt-2   border-2 m-2">
           <Subtitle>flex-row flex-nowrap</Subtitle>
           <Div className="flex flex-row p-4 overflow-x-auto flex-nowrap">{boxes}</Div>
         </Div>
       </Div>
       <Div className="flex flex-row mt-4 bg-gray-200">
-        <Div className="mr-8">
+        <Div className="mr-8  border-2 m-2">
           <Subtitle>flex-column flex-wrap</Subtitle>
           <Div className="flex flex-col flex-wrap h-40 p-4 min-h-40">{boxes}</Div>
         </Div>
-        <Div className="mr-8">
+        <Div className="mr-8  border-2 m-2">
           <Subtitle>flex-column-reverse flex-wrap-reverse</Subtitle>
           <Div className="flex flex-col-reverse flex-wrap-reverse h-40 p-4 min-h-40">
             {boxes}
           </Div>
         </Div>
-        <Div className="mr-8">
+        <Div className="mr-8  border-2 m-2">
           <Subtitle>flex-column flex-nowrap</Subtitle>
           <Div className="flex flex-col h-40 p-4 overflow-y-auto flex-nowrap min-h-40">
             {boxes}
