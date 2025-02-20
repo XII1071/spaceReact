@@ -1,3 +1,4 @@
 export * from './Icon'
 export * from './Icon2'
-export * from './texts'
+export * from './Icon3'
+export * from './Texts'
