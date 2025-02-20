@@ -7,9 +7,9 @@ export default function JustifyCenterTest() {
   ))
 
   return (
-    <section className="p-4 mt-4">
+    <section className="p-4 mt-4 border-2">
       <Title>JustifyCenterTest</Title>
-      <div className="mt-4">
+      <div className="mt-4 border-2">
         <Subtitle>flex flex-row justify-center</Subtitle>
         {/* flex-row일 때는 item가 수직이고 justify가 수평 */}
         <div className="flex flex-row items-center h-40 bg-gray-300 justify-evenly min-h-40">

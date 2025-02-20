@@ -1,5 +1,4 @@
-import {Icon2} from '../components'
-import {Icon3} from '../components/Icon3'
+import {Icon2, Icon3} from '../components'
 
 export default function UsingIconWithCSSClass() {
   return (

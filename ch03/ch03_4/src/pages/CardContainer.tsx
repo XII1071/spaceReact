@@ -17,7 +17,7 @@ export default function CardContainer() {
   return (
     <section className="mt-4">
       <Title>CardContainer</Title>
-      <div className="flex flex-wrap items-center justify-center p-4 mt-4">
+      <div className="flex flex-wrap items-center justify-center p-4 mt-4 border-2 m-2">
         {children}
       </div>
     </section>

@@ -1,31 +1,16 @@
-import DivTest from './pages/DivTest'
-import ViewportTest from './pages/ViewportTest'
-import HeightTest from './pages/HeightTest'
-import PaddingTest from './pages/PaddingTest'
-import MarginTest from './pages/MarginTest'
-import ImageTest from './pages/ImageTest'
-import BackgroundImageTest from './pages/BackgroundImageTest'
-import DisplayTest from './pages/DisplayTest'
-import DisplayNoneTest from './pages/DisplayNoneTest'
-import AvatarTest from './pages/AvatarTest'
-import PositionTest from './pages/PositionTest'
-import OverlayTest from './pages/OverlayTest'
+import './App.css'
+import Color from './pages/Color'
+import Tailwindcss from './pages/Tailwindcss'
+import TextsTest from './pages/TextsTest'
 
-export default function App() {
+function App() {
   return (
-    <main>
-      <OverlayTest />
-      <PositionTest />
-      <DisplayNoneTest />
-      <DisplayTest />
-      <AvatarTest />
-      <BackgroundImageTest />
-      <ImageTest />
-      <MarginTest />
-      <PaddingTest />
-      <HeightTest />
-      <ViewportTest />
-      <DivTest />
-    </main>
+    <div>
+      <TextsTest />
+      <Color />
+      <Tailwindcss />
+    </div>
   )
 }
+
+export default App
