@@ -5,7 +5,7 @@ export type ArrowComponentProps = {
   text: string
 }
 
-const ArrowComponent: FC<ArrowComponentProps> = props => {
+const ArrowComponent: FC<ArrowComponentProps> = function (props) {
   // 속성의 역할 :: 정보전달, 리렌더링
   const {href, text} = props // 구조분해할당
   return (
@@ -16,5 +16,4 @@ const ArrowComponent: FC<ArrowComponentProps> = props => {
     </li>
   )
 }
-
 export default ArrowComponent

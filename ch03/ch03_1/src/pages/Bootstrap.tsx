@@ -3,12 +3,12 @@ export default function Bootstrap() {
     <div>
       <h4>Bootstrap form</h4>
       <form>
-        {/* class, for는 react에서는 각각 className, htmlFor로 반드시 변경! */}
+        {/* class, for는 react에서 각각 className, htmlFor로 반드시 변경! */}
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
-          {/* input, img와 같은 단독태그는 react에서 반드시 '/>'로 종결! */}
+          {/* input, img와 같은 단독태그는 반드시 '/>'로 종결! */}
           <input
             type="email"
             className="form-control"

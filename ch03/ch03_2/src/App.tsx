@@ -1,7 +1,7 @@
 import './App.css'
-import Color from './copy/Color'
-import Tailwindcss from './copy/Tailwindcss'
-import TextsTest from './copy/TextsTest'
+import Color from './pages/Color'
+import Tailwindcss from './pages/Tailwindcss'
+import TextsTest from './pages/TextsTest'
 
 function App() {
   return (

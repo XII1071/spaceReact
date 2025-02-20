@@ -10,6 +10,6 @@ import App from './App.tsx'
 //   </StrictMode>,
 // )
 
-const pVirtuaIDOM = React.createElement('p', null, 'Hello Virtual DOM ')
+const pVirtualDOM = React.createElement('p', null, 'Hello Virtual DOM ')
 const root = createRoot(document.getElementById('root')!)
-root.render(pVirtuaIDOM)
+root.render(pVirtualDOM)

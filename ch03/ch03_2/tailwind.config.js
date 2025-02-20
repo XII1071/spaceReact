@@ -1,9 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+module.exports = {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {}
   },
-  safelist: [{pattern: /^line-clamp-(\d+)$/}],
-  plugins: [require('daisyui')]
+  plugins: []
 }
