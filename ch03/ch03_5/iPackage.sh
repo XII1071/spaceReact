@@ -10,12 +10,12 @@ echo "Installing dev dependencies..."
 npm i -D @types/chance @types/luxon
 
 echo "Installing postcss autoprefixer tailwindcss"
-npm i -D postcss autoprefixer tailwindcss
+npm i -D postcss autoprefixer tailwindcss@latest daisyui@beta
 
 echo "Installing @tailwindcss/line-clamp"
-npm i -D @tailwindcss/line-clamp daisyui
+npm i -D @tailwindcss/line-clamp
 
-echo "Installing daisyui"
+echo "Installing @tailwindcss/vite"
 npm i -D @tailwindcss/vite
 
 echo "Installation complete!"
