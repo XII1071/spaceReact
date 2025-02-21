@@ -5,7 +5,12 @@
 @import '@fontsource/material-icons';
 
 @import 'tailwindcss';
-@plugin 'daisyui';
+@plugin 'daisyui' {
+  themes: light --default, dark --prefersdark, light, dark, cupcake, bumblebee, emerald,
+    corporate, synthwave, retro, cyberpunk, valentine, halloween, garden, forest, aqua,
+    lofi, pastel, fantasy, wireframe, black, luxury, dracula, shades-of-purple, teal,
+    modern, classic, cool;
+}
 
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
