@@ -1,16 +1,16 @@
 import {useEffect, useRef, useState} from 'react'
 import Clock from './pages/Clock'
-import {useClock} from './hooks/useClock'
+import {useClock} from './hooks'
 export default function App() {
-  // // 1.) setInterval 구현, today 변수를 두어서 갱신을 하는 방식
+  // 1) setInterval 구현, today를 변수를 두어서 갱신을 하는 방식
   // let today = new Date()
   // const id = setInterval(() => {
   //   today = new Date()
-  //   // 컴포넌트는 물리적인 돔에 있는것이 아니라 가상돔에 있기 때문에 접근불가
-  //   document.querySelector('#time').innerHTML = today.toISOString()
+  //   // 컴포넌트는 물리적인 돔에 있는것이 아니라 가상돔에 있기 때문에 document 접근 불가
+  //   //document.querySelector('#time').innerHTML = today.toISOString()
   // }, 1000)
 
-  // // 2) useEffect, useLayoutEffect 리액트 훅을 활용, 생성시 한번만 호출
+  // 2) useEffect 훅을 활용, 생성시 한번만 호출
   // let today = new Date()
   // useEffect(() => {
   //   console.log('useEffect called.')
@@ -19,8 +19,8 @@ export default function App() {
   //     today = new Date()
   //     console.log('today', today.toLocaleTimeString())
   //   }, duration)
-  //   return () => clearInterval(id) //setInterval 끝나는 시점에 삭제 (메모리누수방지)
-  // }, []) // 의존성 목록은 배열이고 변하는 변수가 없다는 의미로 빈배열 선언
+  //   return () => clearInterval(id) //setInterval 끝나는 시점에 삭제(메모리누수방지)
+  // }, []) //의존성 목록은 배열이고 변하는 변수가 없다는 의미로 빈배열 선언
 
   // 3) useRef 훅을 활용, 메서드 호출
   // let today = useRef(new Date()) //useRef로 메서드 호출을 통해서 today 객체값 갱신
@@ -33,6 +33,7 @@ export default function App() {
   //   }, duration)
   //   return () => clearInterval(id)
   // }, [])
+
   // 4) useState 훅을 활용, 상태값을 공유
   // const [today, setToday] = useState(new Date())
   // useEffect(() => {
