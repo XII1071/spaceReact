@@ -6,7 +6,7 @@ export type ClockProps = {today: Date}
 const Clock: FC<ClockProps> = ({today}) => {
   return (
     <Div className="flex flex-col items-center justify-start h-32 w-screen bg-primary text-white">
-      <Title className="text-5xl">{today.toDateString()}</Title>
+      <Title className="text-5xl">{today.toLocaleTimeString()}</Title>
       <Subtitle className="mt-4 text-2xl">{today.toLocaleDateString()}</Subtitle>
     </Div>
   )
