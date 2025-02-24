@@ -41,7 +41,7 @@ export default function Memo() {
   )
   return (
     <div className="mt-4">
-      <Title>useMemo 훅을 활요한 캐시 기능 구현</Title>
+      <Title>useMemo 훅을 활용하여 데이터를 캐시하는 기능 구현</Title>
       <div className="overflow-x-auto mt-4 p-4">
         <table className="table table-zebra table-compact w-full">
           <thead>
