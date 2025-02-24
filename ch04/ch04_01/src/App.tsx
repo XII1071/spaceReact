@@ -47,10 +47,26 @@ export default function App() {
   // 5) 커스텀 훅을 활용
   const today = useClock()
 
+  // react hook 함수의 특징
+  // 1) 같은 리액트 훅을 여러 번 호출할 수 있다.
+  const [x, setX] = useState(0)
+  const [y, setY] = useState(0)
+  useEffect(() => {})
+  useEffect(() => {})
+  // 2) 함수 몸통이 아닌 몸통 안 복합실행문의 {} 안에 호출불가
+  {
+    // 지역변수 블록 안에서 리액트 훅 호출 불가
+    if (true) {
+      const [z, setZ] = useState<number>(0)
+    }
+  }
+  // 3) 비동기 함수를 콜백함수로 사용할 수 없다.
+  // useEffect(async() => {await Promise.resolve(1)},[])
   return (
     <main>
       <Clock today={today} />
-      <h1 id="time"></h1>
+      <h1 id="time">{x}</h1>
+      {/* <h1 id="time">{z}</h1> 에러발생 */}
     </main>
   )
 }
