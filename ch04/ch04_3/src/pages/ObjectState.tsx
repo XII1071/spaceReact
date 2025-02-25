@@ -49,8 +49,10 @@ export default function ObjectState() {
       // newForm.name = e.target.value
       // setForm(newForm)
 
+      // 복합실행문이란 while(true){ console.log('hello');console.log('world')}
       // 5) 콜백함수로 구현 : 간단하게
-      // setForm(form => { return {...form, name: e.target.value} }) //return을 사용할 경우
+      // 의존성 목록에 추가하지 않더라도 콜백함수를 통해서 값을 변경할 수 있도록 함.
+      // setForm(form => { return {...form, name: e.target.value} }) //return을 반드시 사용
       /* ※ 복합실행문 : 중괄호 안에 order가 여러 개 if(condition) {order1; order2; order3;} */
       // setForm(form => {...form, name: e.target.value}) // 에러: return을 지우면 복합실행문으로 인식
 

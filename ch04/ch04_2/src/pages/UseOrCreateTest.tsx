@@ -7,7 +7,7 @@ export default function UseOrCreate() {
   // prettier-ignore
   const headTexts = userOrCreate<string[]>('headTexts', function () {
       return [
-        'NO.', 'Name', 'Job Title', 'Email Address'
+        'No.', 'Name', 'Job Title', 'Email Address'
       ]
     })
 

@@ -7,6 +7,7 @@ echo "Copying files from $SRC_DIR..."
 
 # .prettierrc copy
 cp -r ../$SRC_DIR/.prettierrc .
+cp -r ../$SRC_DIR/index.html .
 
 # shell copy
 cp -r ../$SRC_DIR/iPackage.sh .

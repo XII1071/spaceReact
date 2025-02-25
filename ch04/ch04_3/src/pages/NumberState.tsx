@@ -5,7 +5,7 @@ import {Icon} from '../theme/daisyui'
 export default function NumberState() {
   const [count, setCount] = useState<number>(0)
 
-  // 방법0) function 으로 정의 (퍼포먼스에 별로 좋지 않다)
+  // 방법0) function 으로 정의 퍼포먼스에 별로 좋지 않다.
   // const increment = function () {
   //   setCount(count + 1)
   //   console.log('count: ', count)
@@ -41,21 +41,24 @@ export default function NumberState() {
   //   console.log('count: ', count)
   // }, [count])
 
-  // 방법5) useCallback 사용하고 의존성 목록에 값이 없으면서 입력변수가 함수일 때는
-  // 현재 유지되고 있는 값을 매개변수로 해서 세터 함수를 호출하게 되고,
-  // 이때 세터함수가 반환한 값을 새로운 count값으로 설정하므로
+  // 방법5) useCallback 사용하고 의존성 목록에 값이 없으면서
+  // 세터 함수의 입력변수가 함수일 때는 현재 유지되고 있는 값을 매개변수로 하여
+  // 세터 함수를 호출하게 되고, 이때 세터함수가 반환한 값을 새로운 count값으로 설정하므로
+  // 의존성 문제가 발생하지 않는다.
   // count의존성 목록에 없어도 값은 증가, 그러나 내부 count변수의 값을 변경되지 않는다.
-  // const increment = useCallback(() => {
-  //   setCount(count => count + 1)
-  //   console.log('count inc: ', count)
-  // }, [])
+  const increment = useCallback(() => {
+    setCount(function (count) {
+      return count + 1
+    }) // 블럭 외에서 함수의 매개변수 형태로 호출하기에 변한다.
+    console.log('count inc: ', count) // 블럭 안에서 count변수를 호출해도 변화가 없다.
+  }, [])
 
   // 방법6) useCallback 사용하면서 의존성 목록에 값이 있으면서 입력변수가 함수일 때는
   // 값이 증가하면서 내부 변수도 변경된다.
-  const increment = useCallback(() => {
-    setCount(count => count + 1)
-    console.log('count inc: ', count)
-  }, [count])
+  // const increment = useCallback(() => {
+  //   setCount(count => count + 1)
+  //   console.log('count inc: ', count)
+  // }, [count])
 
   const decrement = useCallback(() => {
     setCount(count => count - 1)

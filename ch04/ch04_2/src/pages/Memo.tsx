@@ -13,7 +13,7 @@ import * as D from '../data'
 
 export default function Memo() {
   const headTexts = useMemo<string[]>(function () {
-    return ['NO.', 'Name', 'Job Title', 'Email Address']
+    return ['No.', 'Name', 'Job Title', 'Email Address']
   }, [])
 
   const users = useMemo<D.IUser[]>(function () {

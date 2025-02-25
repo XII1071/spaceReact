@@ -15,7 +15,7 @@ npm i -D postcss autoprefixer tailwindcss
 echo "Installing @tailwindcss/line-clamp"
 npm i -D @tailwindcss/line-clamp daisyui
 
-echo "Installing daisyui"
+echo "Installing @tailwindcss/vite"
 npm i -D @tailwindcss/vite
 
 echo "Installation complete!"

@@ -10,7 +10,7 @@ import ArrayState from './pages/ArrayState'
 function App() {
   return (
     <main>
-      <h1 className="bg-blue-500 text-5xl text-white  text-center p-3">
+      <h1 className="bg-blue-500 text-white text-5xl text-center p-3">
         상태 변화를 탐지하는 useState 훅
       </h1>
       <ArrayState />
