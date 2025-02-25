@@ -6,7 +6,7 @@ export default class ClassLifecycle extends Component {
   // 클래스 컴포넌트에서 상태는 항상 state라는 이름의 멤버 속성으로 구현
   state = {
     today: new Date(),
-    intervalId: null as unknown as NodeJS.Timer
+    intervalId: null as unknown as ReturnType<typeof setInterval>
   }
   // componentDidMount()는 클래스 컴포넌트가 마운트되는 시점에 호출
   componentDidMount() {
