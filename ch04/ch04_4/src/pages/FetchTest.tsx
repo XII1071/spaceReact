@@ -1,5 +1,5 @@
 import {Title, Avatar, Icon} from '../components'
-import * as D from '../data'
+import * as D from '../data/fetchRandomUser'
 import {useToggle} from '../hooks'
 import {useState, useCallback} from 'react'
 
