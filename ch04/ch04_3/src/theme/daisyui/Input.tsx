@@ -7,7 +7,17 @@ export type ReactInputProps = DetailedHTMLProps<
 
 export type inputProps = ReactInputProps & {}
 
-export const Input: FC<inputProps> = ({className: _className, ...inputProps}) => {
-  const className = ['input', _className].join(' ')
-  return <input {...inputProps} className={className} />
+export const Input: FC<inputProps> = ({
+  className: _className,
+  type: _type,
+  ...inputProps
+}) => {
+  let className = ''
+  const type = _type
+  if (type == 'text' || type == 'password') {
+    className = ['input', _className].join(' ')
+    return <input {...inputProps} type={type} className={className} />
+  } else {
+    return <input {...inputProps} type={type} />
+  }
 }

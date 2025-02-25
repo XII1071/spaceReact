@@ -19,7 +19,7 @@ export default function InputTest() {
     [value]
   )
   const onChangeChecked = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
+    function (e: ChangeEvent<HTMLInputElement>) {
       // checked = e.target.checked
       // setChecked(function () {
       //   return e.target.checked
@@ -49,13 +49,8 @@ export default function InputTest() {
         />
         <label>{value}</label>
 
-        <input type="checkbox" checked={checked} onChange={onChangeChecked} />
-        <Input
-          type="checkbox"
-          checked={checked}
-          onChange={onChangeChecked}
-          className="ml-4 checkbox checkbox-primary input-sm"
-        />
+        <input type="checkbox" onChange={onChangeChecked} />
+        <Input type="checkbox" checked={checked} onChange={onChangeChecked} />
         <label>{checked ? 'O' : 'X'}</label>
       </div>
     </section>

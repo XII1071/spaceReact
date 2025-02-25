@@ -10,7 +10,8 @@ export default function RadioInputTest() {
   const onChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       setSelectedJobTitle(notUsed => e.target.value)
-      console.log('selectedJobTitle :', selectedJobTitle)
+      console.log('selectedJobTitle :', e.target.value)
+      console.log('selectedJobTitle :', e.target.dataset.index)
     },
     [selectedJobTitle]
   )
@@ -21,6 +22,7 @@ export default function RadioInputTest() {
           <input
             type="radio"
             name="jobx"
+            data-index={index}
             className="mr-4 radio radio-primary"
             checked={value === selectedJobTitle}
             defaultValue={value}
