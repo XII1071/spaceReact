@@ -1,23 +1,24 @@
 import type {FC, DetailedHTMLProps, InputHTMLAttributes} from 'react'
+import {forwardRef} from 'react'
 
-export type ReactInputProps = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->
+// prettier-ignore
+export type ReactInputProps = 
+  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,HTMLInputElement>
 
-export type inputProps = ReactInputProps & {}
+export type InputProps = ReactInputProps & {}
 
-export const Input: FC<inputProps> = ({
-  className: _className,
-  type: _type,
-  ...inputProps
-}) => {
-  let className = ''
-  const type = _type
-  if (type == 'text' || type == 'password') {
-    className = ['input', _className].join(' ')
-    return <input {...inputProps} type={type} className={className} />
-  } else {
-    return <input {...inputProps} type={type} />
-  }
+// prettier-ignore
+// export const Input = forwardRef<HTMLInputElement, InputProps>(
+//   // 사용자 컴포넌트의 ref속성을 사용하려면 forwardRef를 사용해야 한다.
+//   function (props, ref) {
+//     const {className: _className, ...inputProps} = props
+//     const className = ['input', _className].join(' ')
+//     return <input ref={ref} {...inputProps} className={className} />
+//   }
+// )
+
+// react 19버전에서는 아래도 된다.
+export const Input: FC<InputProps> = ({className:_className,...InputProps}) => {
+  const className=['input', _className].join(" ") 
+  return <input {...InputProps} className={className} />
 }

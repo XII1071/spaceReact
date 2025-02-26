@@ -1,6 +1,6 @@
 import {useRef, useCallback, useEffect} from 'react'
 import {Title} from '../components'
-import {Input} from '../theme/daisyui'
+import {Input, Button} from '../theme/daisyui'
 
 export default function ForwardRefTest() {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -15,9 +15,9 @@ export default function ForwardRefTest() {
       <div className="flex justify-center mt-4 ">
         <div className="flex flex-col w-1/3 p-2">
           <Input ref={inputRef} className="input-primary" />
-          <button onClick={getValue} className="mt-4 btn btn-primary">
+          <Button onClick={getValue} className="mt-4 btn btn-primary">
             get value
-          </button>
+          </Button>
         </div>
       </div>
     </section>
