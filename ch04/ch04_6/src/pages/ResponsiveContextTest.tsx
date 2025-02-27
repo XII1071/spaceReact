@@ -1,8 +1,10 @@
+import {useContext} from 'react'
 import {Title, Subtitle} from '../components'
-import {useResponsive} from '../contexts'
+import {ResponsiveContext, useResponsive} from '../contexts'
 
 export default function ResponsiveContextTest() {
-  const breakpoint = useResponsive()
+  // const breakpoint = useResponsive()
+  const {breakpoint} = useContext(ResponsiveContext)
   return (
     <section className="mt-4">
       <Title>ResponsiveContextTest</Title>
