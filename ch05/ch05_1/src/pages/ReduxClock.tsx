@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux'
-import {AppState} from '../store/AppState'
+import {AppState} from '../store'
 import {Div, Title, Subtitle} from '../components'
 import {useInterval} from '../hooks'
 

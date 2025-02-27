@@ -9,7 +9,7 @@ export default function UseReducerClock() {
     function (state: AppState, action: SetTodayAction) {
       switch (action.type) {
         case 'setToday':
-          return {...StaticRange, today: new Date()}
+          return {...state, today: new Date()}
       }
       return state
     },
