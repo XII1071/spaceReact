@@ -6,7 +6,7 @@ const initializeStore = function () {
   const store = configureStore({
     reducer: rootReducer,
     middleware: function (getDefaultMiddleware) {
-      return getDefaultMiddleware()
+      return getDefaultMiddleware({serializableCheck: false})
     }
   })
   return store
