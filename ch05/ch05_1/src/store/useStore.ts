@@ -3,6 +3,7 @@ import {useMemo} from 'react'
 import {rootReducer} from './rootReducer'
 
 const initializeStore = function () {
+  // configureStore :: store를 구성하는 명령
   const store = configureStore({
     reducer: rootReducer,
     middleware: function (getDefaultMiddleware) {
