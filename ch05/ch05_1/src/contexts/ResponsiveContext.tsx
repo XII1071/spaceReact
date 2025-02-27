@@ -14,11 +14,12 @@ const defaultContextValue: ContextType = {
 export const ResponsiveContext = createContext<ContextType>(defaultContextValue)
 
 type ResponsiveProviderProps = {} // 빈객체
+
 export const ResponsiveProvider: FC<PropsWithChildren<ResponsiveProviderProps>> = ({
   children,
   ...props
 }) => {
-  //구조분해할당할 때 개수가 맞지 않을 때 순서대로 전달
+  //구조분해할당할 때 개수가 맞지 않을 때 순서대로 전달, 이벤트도 처리
   const [width] = useWindowResize() // [width, height]
   // prettier-ignore
   const breakpoint = width < 640 ? 'sm' : 
@@ -30,7 +31,7 @@ export const ResponsiveProvider: FC<PropsWithChildren<ResponsiveProviderProps>> 
   const value = {
     breakpoint // breakpoint: breakpoint를 간결하게 구현한 것입니다.
   }
-  // Provite에는 value와 children 속성을 지정해줘야 한다.
+  // Provider에는 value와 children 속성을 지정해줘야 한다.
   return <ResponsiveContext.Provider value={value} children={children} />
 }
 

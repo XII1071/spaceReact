@@ -1,13 +1,17 @@
-import ResponsiveContextTest from './pages/ResponsiveContextTest'
-import {ResponsiveProvider} from './contexts'
+import {Provider as ReduxProvider} from 'react-redux'
+
+import ReduxClock from './pages/ReduxClock'
+import UseReducerClock from './pages/UseReducerClock'
+import {useStore} from './store/useStore'
 
 export default function App() {
+  const store = useStore()
   return (
-    // 모든 컨텍스트 제공자는 가장 최상위 컴포넌트로 동작해야 한다는 원칙!
-    <ResponsiveProvider>
-      <main>
-        <ResponsiveContextTest />
+    <ReduxProvider store={store}>
+      <main className="p-8">
+        <UseReducerClock />
+        <ReduxClock />
       </main>
-    </ResponsiveProvider>
+    </ReduxProvider>
   )
 }
