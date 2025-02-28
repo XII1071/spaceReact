@@ -23,7 +23,8 @@ cp -r ../$SRC_DIR/src/* ./src
 # src/pages file remove
 rm -rf src/pages/*
 
-# src/pages file remove
+# src/store file remove
 rm -rf src/store/*
+cp -r src/copy/store/* ./src/store
 
 echo "Done!"
