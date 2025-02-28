@@ -1,17 +1,10 @@
-import {Provider as ReduxProvider} from 'react-redux'
-
-import ReduxClock from './pages/ReduxClock'
-import UseReducerClock from './pages/UseReducerClock'
-import {useStore} from './store/useStore'
+import Counter from './jotai/Counter'
 
 export default function App() {
-  const store = useStore()
   return (
-    <ReduxProvider store={store}>
-      <main className="p-8">
-        <UseReducerClock />
-        <ReduxClock />
-      </main>
-    </ReduxProvider>
+    <main>
+      <h2 className="text-5xl">React Jotai Counter</h2>
+      <Counter />
+    </main>
   )
 }
