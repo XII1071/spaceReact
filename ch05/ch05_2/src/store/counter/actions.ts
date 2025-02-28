@@ -7,6 +7,6 @@ export const setCounter = function (payload: T.State): T.SetCounterAction {
   } //즉시 실행문
 }
 // prettier-ignore
-export const increaseCounter = () => {setCounter(1)}
+export const increaseCounter = () => setCounter(1)
 // prettier-ignore
-export const decreaseCounter = () => {setCounter(-1)}
+export const decreaseCounter = () => setCounter(-1)
