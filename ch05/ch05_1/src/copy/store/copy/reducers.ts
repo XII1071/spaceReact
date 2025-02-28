@@ -1,4 +1,4 @@
-import type * as T from './types'
+import * as T from './types'
 
 const initialState: T.State = {}
 
