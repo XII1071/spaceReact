@@ -1,10 +1,11 @@
 import {FormEvent, useCallback, useRef} from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams, useSearchParams} from 'react-router-dom'
 
 export default function Register() {
   const idRef = useRef<HTMLInputElement | null>(null)
   const passRef = useRef<HTMLInputElement | null>(null)
   const params = useParams()
+  const [search] = useSearchParams()
 
   const register = useCallback(
     () => (e: FormEvent<HTMLFormElement>) => {
@@ -32,6 +33,8 @@ export default function Register() {
         </form>
         <p>id: {params['id']}</p>
         <p>pass: {params['pass']}</p>
+        <p>id: {search.get['id']}</p>
+        <p>pass: {search.get['pass']}</p>
       </div>
     </div>
   )
