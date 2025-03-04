@@ -1,5 +1,5 @@
 import {useCallback} from 'react'
-import {BoardDTO} from '../dto/BoardDTO'
+import {BoardDTO} from '../../dto/BoardDTO'
 import {useNavigate} from 'react-router-dom'
 
 export default function Board() {
@@ -12,7 +12,7 @@ export default function Board() {
   const goRead = useCallback(
     (bid: number) => () => {
       // location.href = './board/list/' + bid
-      navigate('/board/list/${bid}')
+      navigate(`/board/list/${bid}`)
     },
     [navigate]
   )

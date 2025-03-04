@@ -1,7 +1,7 @@
 import {Route, Routes} from 'react-router-dom'
 import NoMatch from './NoMatch'
 import Home from './Home'
-import Board from '../pages/Board'
+import Board from '../pages/Board/List'
 
 export default function RoutesSetup() {
   return (
