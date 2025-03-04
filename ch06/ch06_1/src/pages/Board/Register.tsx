@@ -21,7 +21,6 @@ export default function Register() {
     },
     []
   )
-
   return (
     <div>
       <h4>Register</h4>
@@ -33,8 +32,8 @@ export default function Register() {
         </form>
         <p>id: {params['id']}</p>
         <p>pass: {params['pass']}</p>
-        <p>id: {search.get['id']}</p>
-        <p>pass: {search.get['pass']}</p>
+        <p>id: {search.get('id')}</p>
+        <p>pass: {search.get('pass')}</p>
       </div>
     </div>
   )
