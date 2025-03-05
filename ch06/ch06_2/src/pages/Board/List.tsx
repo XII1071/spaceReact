@@ -12,10 +12,10 @@ const List: FC<BoardListProps> = ({boardList}) => {
   // console.log(boardList)
   const goRead = useCallback(
     (bid: number) => () => {
-      // location.href = "/board/list/" + bid
-      navigate(`/board/list/${bid}`)
+      // location.href = "/board/read/" + bid
+      navigate(`/board/read/${bid}`)
       // location은 window.location과 일치하지 않지만, 위치에 대한 정보를 담고 있음.
-      console.log(location.pathname + '/list/' + bid)
+      console.log(location.pathname + '/read/' + bid)
       console.log(location)
     },
     [navigate]
