@@ -12,6 +12,7 @@
   "dependencies": {
     "@fontsource/material-icons": "^5.2.5",
     "chance": "^1.1.12",
+    "jotai": "^2.12.1",
     "luxon": "^3.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
