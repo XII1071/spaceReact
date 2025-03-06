@@ -1,6 +1,7 @@
 import {useAtom} from 'jotai'
 import {FC} from 'react'
-import {imageNameAtom} from '../../jotai/ImageNameAtom'
+import {imageNameAtom} from '../../jotai/imageNameAtom'
+
 export type ImageUrlProps = {
   imageUrlList?: string[]
 }
@@ -15,9 +16,8 @@ const ImageBox: FC<ImageUrlProps> = ({imageUrlList}) => {
         {imageUrlList?.map((url, index) => (
           <img
             src={url}
-            key={url}
+            key={index}
             onClick={() => {
-              alert(index)
               setImageName(url)
             }}
           />

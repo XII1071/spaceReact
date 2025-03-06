@@ -1,9 +1,9 @@
 import {Route, Routes} from 'react-router-dom'
-import Board from '../pages/Board'
-import Read from '../pages/Board/Read'
-import Register from '../pages/Board/Register'
-import Layout from './Layout'
 import NoMatch from './NoMatch'
+import Layout from './Layout'
+import Board from '../pages/Board'
+import Register from '../pages/Board/Register'
+import Read from '../pages/Board/Read'
 import LandingPage from '../pages/LandingPage'
 
 export default function RoutesSetup() {
