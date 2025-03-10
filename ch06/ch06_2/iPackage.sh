@@ -21,9 +21,11 @@ npm i -D @tailwindcss/vite
 echo "Installing @reduxjs/toolkit react-redux"
 npm i -D @reduxjs/toolkit react-redux
 
-echo "Installing react-router-dom"
-npm i react-router-dom
+# echo "Installing jotai"
+# npm i -D jotai
 
+echo "Installing react-router-dom"
+npm i -D react-router-dom
 echo "Installation complete!"
 read -p "Press Enter to exit..."
 
