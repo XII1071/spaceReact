@@ -20,13 +20,15 @@ export function Login() {
     e.preventDefault()
 
     if (emailRef.current?.value === '') {
-      alert('Please Check Email')
-      if (emailRef.current !== null) emailRef.current.focus()
+      if (emailRef.current !== null) {
+        emailRef.current.setAttribute('placeholder', 'Please Check Email')
+        emailRef.current.focus()
+      }
       return
     }
     if (passRef.current?.value === '') {
-      alert('Please Check Password')
       if (passRef.current !== null) {
+        passRef.current.setAttribute('placeholder', 'Please Check Password')
         passRef.current.focus()
       }
       return
@@ -67,10 +69,10 @@ export function Login() {
     <div
       className="flex items-center justify-center"
       style={{height: '100vh', minHeight: '100vh'}}>
-      <div className="flex flex-col rounded items-center bg-cyan-500 justify-center flex-1 max-w-sm mx-auto">
+      <div className="flex flex-col rounded items-center bg-gray-200 justify-center flex-1 max-w-sm mx-auto">
         <div className="w-full px-6 py-8 text-black rounded shadow-md">
           <form method="post" onSubmit={onSubmit}>
-            <h1 className="mb-8 text-4xl text-center text-white">My Journal</h1>
+            <h1 className="mb-8 text-4xl text-center">My Journal</h1>
             <input
               type="text"
               name="email"
@@ -88,7 +90,7 @@ export function Login() {
               onChange={changed('pass')}
             />
             <button
-              className="w-full p-3 mb-4 text-2xl text-black bg-blue-100 rounded size-15"
+              className="w-full p-3 mb-4 text-2xl text-black bg-gray-300 rounded size-15"
               type="submit">
               Login
             </button>
@@ -104,4 +106,3 @@ export function Login() {
     </div>
   )
 }
-  
