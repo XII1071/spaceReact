@@ -11,8 +11,8 @@ export default function Layout() {
         <Route index element={<List />} />
         <Route path="/list" element={<List />} />
         <Route path="/about" element={<About />} />
-        <Route path="/main/sample-post" element={<SamplePost />} />
-        <Route path="/main/contact" element={<Contact />} />
+        <Route path="/sample-post" element={<SamplePost />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </>
