@@ -1,97 +1,106 @@
-import {useRef, useState} from 'react'
+import type {ChangeEvent, FormEvent} from 'react'
+import {useState, useCallback, useRef} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 
+type LoginFormType = Record<'email' | 'pass', string>
+const initialFormState = {email: '', pass: ''}
 export function Login() {
-  const usernameRef = useRef<HTMLInputElement>(null)
-  const passwordRef = useRef<HTMLInputElement>(null)
-  const [error, setError] = useState({username: '', password: ''})
-  const [loading, setLoading] = useState(false)
+  const [{email, pass}, setForm] = useState<LoginFormType>(initialFormState)
+  const changed = useCallback(
+    (key: string) => (e: ChangeEvent<HTMLInputElement>) => {
+      setForm(obj => ({...obj, [key]: e.target.value}))
+    },
+    []
+  )
+  const navigate = useNavigate()
 
-  const validate = () => {
-    const username = usernameRef.current?.value.trim() || ''
-    const password = passwordRef.current?.value.trim() || ''
-    let isValid = true
-    let newError = {username: '', password: ''}
-
-    if (!username) {
-      newError.username = '아이디를 입력하세요.'
-      isValid = false
-    }
-
-    if (!password) {
-      newError.password = '비밀번호를 입력하세요.'
-      isValid = false
-    } else if (password.length < 6) {
-      newError.password = '비밀번호는 최소 6자 이상이어야 합니다.'
-      isValid = false
-    }
-
-    setError(newError)
-    return isValid
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const emailRef = useRef<HTMLInputElement>(null)
+  const passRef = useRef<HTMLInputElement>(null)
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!validate()) return
 
-    setLoading(true)
-    setTimeout(() => {
-      alert(`로그인 성공: ${usernameRef.current?.value}`)
-      setLoading(false)
-    }, 1000)
+    if (emailRef.current?.value === '') {
+      alert('Please Check Email')
+      if (emailRef.current !== null) emailRef.current.focus()
+      return
+    }
+    if (passRef.current?.value === '') {
+      alert('Please Check Password')
+      if (passRef.current !== null) {
+        passRef.current.focus()
+      }
+      return
+    }
+    getSession(email, pass)
+  }
+  const getSession = async (email: string, pass: string) => {
+    try {
+      new Promise((resolve, reject) => {
+        // prettier ignore
+        fetch(
+          'http://localhost:8080/apiserver/auth/login?email=' +
+            email +
+            '&password=' +
+            pass,
+          {
+            method: 'POST'
+          }
+        )
+          .then(res => res.text())
+          .then(token => {
+            if (token.startsWith('{"code"')) {
+              navigate('/login')
+            } else {
+              sessionStorage.setItem('token', token)
+              sessionStorage.setItem('email', email)
+              navigate('/list')
+            }
+          })
+          .catch(err => console.log('Error:', err))
+      })
+    } catch (error) {
+    } finally {
+    }
   }
 
   return (
-    <section className="mt-10 flex flex-col items-center">
-      <h2 className="font-bold text-4xl text-center text-gray-800">Login</h2>
-      <div className="mt-6 w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* 아이디 입력 */}
-          <div>
-            <label htmlFor="username" className="block text-gray-700 font-semibold">
-              Username
-            </label>
+    <div
+      className="flex items-center justify-center"
+      style={{height: '100vh', minHeight: '100vh'}}>
+      <div className="flex flex-col rounded items-center bg-cyan-500 justify-center flex-1 max-w-sm mx-auto">
+        <div className="w-full px-6 py-8 text-black rounded shadow-md">
+          <form method="post" onSubmit={onSubmit}>
+            <h1 className="mb-8 text-4xl text-center text-white">My Journal</h1>
             <input
               type="text"
-              id="username"
-              ref={usernameRef}
-              className="w-full px-4 py-2 mt-2 border rounded-lg focus:ring focus:ring-blue-300"
-              placeholder="Enter your username"
+              name="email"
+              ref={emailRef}
+              className="input input-accent w-full p-1 mb-4 text-xl rounded-lg size-15"
+              placeholder="Email"
+              onChange={changed('email')}
             />
-            {error.username && <p className="text-red-500 text-sm">{error.username}</p>}
-          </div>
-
-          {/* 비밀번호 입력 */}
-          <div>
-            <label htmlFor="password" className="block text-gray-700 font-semibold">
-              Password
-            </label>
             <input
               type="password"
-              id="password"
-              ref={passwordRef}
-              className="w-full px-4 py-2 mt-2 border rounded-lg focus:ring focus:ring-blue-300"
-              placeholder="Enter your password"
+              name="pass"
+              ref={passRef}
+              className="input input-accent w-full p-1 mb-4 text-xl rounded-lg size-15"
+              placeholder="Password"
+              onChange={changed('pass')}
             />
-            {error.password && <p className="text-red-500 text-sm">{error.password}</p>}
-          </div>
-
-          {/* 로그인 유지 체크박스 */}
-          <div className="flex items-center">
-            <input type="checkbox" id="remember-me" className="mr-2" />
-            <label htmlFor="remember-me" className="text-gray-600 text-sm">
-              Remember me
-            </label>
-          </div>
-
-          {/* 로그인 버튼 */}
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
-            disabled={loading}>
-            {loading ? '로그인 중...' : 'Sign in'}
-          </button>
-        </form>
+            <button
+              className="w-full p-3 mb-4 text-2xl text-black bg-blue-100 rounded size-15"
+              type="submit">
+              Login
+            </button>
+          </form>
+          <span className="mt-6 text-lg text-grey-dark font-sans md:font-serif">
+            Create account?
+            <Link className="ml-5 text-lg" to="/join">
+              Join
+            </Link>
+          </span>
+        </div>
       </div>
-    </section>
+    </div>
   )
 }
