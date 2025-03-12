@@ -85,7 +85,7 @@ export function Join() {
           .then(res => res.text())
           .then(mid => {
             if (mid) {
-              alert(mid + ' registered')
+              alert('' + mid)
             }
           })
           .catch(err => console.log('Error:', err))
@@ -104,16 +104,46 @@ export function Join() {
         <div className="w-full px-6 py-8 text-black rounded shadow-md">
           <form method="post" onSubmit={onSubmit}>
             <h1 className="mb-8 text-4xl text-center">My Journal</h1>
-            <input type="text" name="email" ref={emailRef} className="input input-accent w-full p-1 mb-4 text-xl rounded-lg size-15"
-              placeholder="Email" onChange={changed('email')} />
-            <input type="password" name="pass" ref={passRef} className="input input-accent w-full p-1 mb-4 text-xl rounded-lg size-15"
-              placeholder="Password" onChange={changed('pass')}/>
-            <input type="text" name="mobile" ref={mobileRef} className="input input-accent w-full p-1 mb-4 text-xl rounded-lg size-15"
-              placeholder="Mobile" onChange={changed('mobile')} />
-            <input type="text" name="name" ref={nameRef} className="input input-accent w-full p-1 mb-4 text-xl rounded-lg size-15"
-              placeholder="Name" onChange={changed('name')} />
-            <input type="text" name="nickname" ref={nicknameRef} className="input input-accent w-full p-1 mb-4 text-xl rounded-lg size-15"
-              placeholder="Nickname" onChange={changed('nickname')} />
+            <input
+              type="text"
+              name="email"
+              ref={emailRef}
+              className="input input-accent w-full p-1 mb-4 text-xl rounded-lg size-15"
+              placeholder="Email"
+              onChange={changed('email')}
+            />
+            <input
+              type="password"
+              name="pass"
+              ref={passRef}
+              className="input input-accent w-full p-1 mb-4 text-xl rounded-lg size-15"
+              placeholder="Password"
+              onChange={changed('pass')}
+            />
+            <input
+              type="text"
+              name="mobile"
+              ref={mobileRef}
+              className="input input-accent w-full p-1 mb-4 text-xl rounded-lg size-15"
+              placeholder="Mobile"
+              onChange={changed('mobile')}
+            />
+            <input
+              type="text"
+              name="name"
+              ref={nameRef}
+              className="input input-accent w-full p-1 mb-4 text-xl rounded-lg size-15"
+              placeholder="Name"
+              onChange={changed('name')}
+            />
+            <input
+              type="text"
+              name="nickname"
+              ref={nicknameRef}
+              className="input input-accent w-full p-1 mb-4 text-xl rounded-lg size-15"
+              placeholder="Nickname"
+              onChange={changed('nickname')}
+            />
             <button
               className="w-full p-3 mb-4 text-2xl text-black bg-gray-300 rounded size-15"
               type="submit">
@@ -122,8 +152,8 @@ export function Join() {
           </form>
           <span className="mt-6 text-lg text-grey-dark font-sans md:font-serif">
             Create account?
-            <Link className="ml-5 text-lg" to="/join">
-              Join
+            <Link className="ml-5 text-lg" to="/login">
+              login
             </Link>
           </span>
         </div>

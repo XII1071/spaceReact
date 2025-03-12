@@ -18,6 +18,9 @@ npm i -D @tailwindcss/line-clamp
 echo "Installing @tailwindcss/vite"
 npm i -D @tailwindcss/vite
 
+echo "Installing bootstrap"
+npm i -D bootstrap
+
 # echo "Installing @reduxjs/toolkit react-redux"
 # npm i -D @reduxjs/toolkit react-redux
 
