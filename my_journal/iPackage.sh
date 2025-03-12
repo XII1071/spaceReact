@@ -21,6 +21,9 @@ npm i -D @tailwindcss/vite
 echo "Installing bootstrap"
 npm i -D bootstrap
 
+echo "Installing @types/bootstrap"
+npm i -D --save-dev @types/bootstrap
+
 # echo "Installing @reduxjs/toolkit react-redux"
 # npm i -D @reduxjs/toolkit react-redux
 
