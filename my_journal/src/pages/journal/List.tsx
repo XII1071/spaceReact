@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from 'react'
+import {ChangeEvent, FormEvent, useCallback, useEffect, useRef, useState} from 'react'
 import {useToken} from '../../hooks'
 import {useNavigate, useSearchParams} from 'react-router-dom'
 
@@ -32,6 +32,7 @@ interface PageResultDTO {
   prev: boolean
   next: boolean
 }
+
 interface PageRequestDTO {
   page: string
   size: string
@@ -41,10 +42,10 @@ interface PageRequestDTO {
 
 export function List() {
   const token = useToken()
-  const navigation = useNavigate()
+  const navigate = useNavigate()
 
   const [query] = useSearchParams() // 웹주소의 쿼리(?이하)를 받기위한 함수
-  const [PageRequestDTO, setPageRequestDTO] = useState<PageRequestDTO>({
+  const [pageRequestDTO, setPageRequestDTO] = useState<PageRequestDTO>({
     page: '',
     size: '',
     type: '',
@@ -56,11 +57,11 @@ export function List() {
   const refBtnSrch = useRef<HTMLButtonElement | null>(null)
   const [pageResultDTO, setPageResultDTO] = useState<PageResultDTO | null>(null)
   const [types, setTypes] = useState<string>('')
-  const [keyword, setKeywords] = useState<string>('')
-  const [disabled, setDisabled] = useState<string>(true)
+  const [keywords, setKeywords] = useState<string>('')
+  const [disabled, setDisabled] = useState(true)
 
   const options = [
-    {value: '', label: '선택하세요'},
+    {value: '', label: '검색하세요'},
     {value: 't', label: '제목'},
     {value: 'c', label: '내용'},
     {value: 'w', label: '작성자'},
@@ -79,19 +80,19 @@ export function List() {
 
     if (page) queryParams.push(`page=${page}`) //page 있을 경우
     if (type) {
-      //type이 있을 경우
+      //type 있을 경우
       setTypes(type)
       setDisabled(false)
       queryParams.push(`type=${type}`)
     }
     if (keyword) {
-      // keyword 있을 경우
-      queryParams.push(`keyword=${keyword}`)
+      //keyword 있을 경우
       setDisabled(false)
+      queryParams.push(`keyword=${keyword}`)
     }
 
     let url = 'http://localhost:8080/apiserver/journal/list'
-    if (queryParams.length > 0) url = queryParams.join('&')
+    if (queryParams.length > 0) url += '?' + queryParams.join('&')
 
     if (token) {
       fetch(url, {
@@ -106,14 +107,65 @@ export function List() {
         })
         .then(data => {
           setPageResultDTO(data.pageResultDTO)
-          setPagequestDTO(data.pagequestDTO)
-          console.log(data.dtoList)
+          setPageRequestDTO(data.pageRequestDTO)
         })
         .catch(err => {
           console.log('Error:', err)
         })
     }
   }, [query, types, token])
+
+  const url = `/list`
+  const getSearch = (e: FormEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+
+    const keywordw = refKeyword.current?.value
+    const typew = refType.current?.value
+
+    if (!keywordw) {
+      refKeyword.current?.focus()
+      return
+    }
+
+    // navigate 호출로 URL만 변경
+    navigate(url + `?type=${typew}&keyword=${keywordw}&page=1`)
+  }
+
+  const goRead = (fno: number, page: number, type: string, keyword: string) => {
+    location.href = url + `/read?fno=${fno}&page=${page}&type=${type}&keyword=${keyword}`
+  }
+  const goRegister = () => {
+    location.href =
+      url +
+      `/register?page=${pageRequestDTO.page}&type=${pageRequestDTO.type}&keyword=${pageRequestDTO.keyword}`
+  }
+  const selChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
+    if (e) {
+      setTypes(refType.current?.value ?? '')
+      if (e.target.selectedIndex === 0) {
+        if (!keywords) setKeywords('')
+        setDisabled(true)
+        if (refKeyword.current?.value) {
+          setKeywords('')
+        }
+        navigate(`/`)
+      } else if (e.target.value !== types) {
+        console.log('***', e.target.value, types)
+        if (!keywords) {
+          setKeywords('')
+        }
+        setDisabled(false)
+        if (refKeyword.current?.value) {
+          setKeywords('')
+        }
+        navigate(`/`)
+        refKeyword.current?.focus()
+      } else {
+        setDisabled(false)
+      }
+    }
+    setTypes(e.target.value)
+  }, [])
   return (
     <>
       <header
@@ -127,8 +179,8 @@ export function List() {
                 <h2 className="subheading">Write your story, one page at a time.</h2>
                 <span className="meta">
                   Posted by
-                  <a href="#!"> Start Journal on</a>
-                  on August 24, 2023
+                  <a href="#!"> Start My Journal </a>
+                  on March 10, 2025
                 </span>
               </div>
             </div>
@@ -139,6 +191,55 @@ export function List() {
       <div className="container px-4 px-lg-5">
         <div className="row gx-4 gx-lg-5 justify-content-center">
           <div className="col-md-10 col-lg-8 col-xl-7">
+            <form method="GET">
+              <div className="input-group">
+                <div className="input-group-prepend" style={{marginRight: '5px'}}>
+                  <select
+                    className="select select-text rounded-sm border-gray-400 w-43"
+                    style={{fontSize: '16px'}}
+                    ref={refType}
+                    name="type"
+                    value={types}
+                    onChange={selChange}>
+                    {options.map((item, idx) => (
+                      <option key={idx} value={item.value}>
+                        {item.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <input
+                  type="text"
+                  className="input input-text rounded-sm border-gray-400 w-47"
+                  name="keyword"
+                  style={{borderRadius: '5px', fontSize: '16px'}}
+                  ref={refKeyword}
+                  disabled={disabled}
+                  // readOnly={!inverted}
+                  onChange={e => {
+                    console.log(refKeyword.current?.readOnly)
+                    setKeywords(e.target.value)
+                  }}
+                  value={pageRequestDTO.keyword ?? keywords}
+                />
+                <div className="input-group-append" style={{marginLeft: '5px'}}>
+                  <button
+                    type="button"
+                    className="btn btn-secondary p-0 w-20 rounded-sm btnSearch"
+                    onClick={getSearch}
+                    ref={refBtnSrch}
+                    disabled={disabled}>
+                    Search
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-primary p-0 w-20 rounded-sm "
+                    onClick={goRegister}>
+                    Register
+                  </button>
+                </div>
+              </div>
+            </form>
             {pageResultDTO?.dtoList.map(function (journal, index) {
               return (
                 <div key={index}>
@@ -186,7 +287,11 @@ export function List() {
                     className={`page-item ${
                       pageResultDTO?.page === page ? 'active' : ''
                     }`}>
-                    <a className="page-link" href={`/journal/list?page=${page}`}>
+                    <a
+                      className="page-link"
+                      href={`/list?page=${page ?? ''}&type=${
+                        query.get('type') ?? ''
+                      }&keyword=${query.get('keyword') ?? ''}`}>
                       {page}
                     </a>
                   </li>

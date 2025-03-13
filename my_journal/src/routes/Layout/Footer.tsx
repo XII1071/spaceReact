@@ -32,7 +32,7 @@ export default function Footer() {
               </li>
             </ul>
             <div className="small text-center text-muted fst-italic">
-              Copyright &copy; Your Website 2023
+              Copyright &copy; My Journal 2025
             </div>
           </div>
         </div>
