@@ -131,13 +131,15 @@ export function List() {
     navigate(url + `?type=${typew}&keyword=${keywordw}&page=1`)
   }
 
-  const goRead = (fno: number, page: number, type: string, keyword: string) => {
-    location.href = url + `/read?fno=${fno}&page=${page}&type=${type}&keyword=${keyword}`
+  const goPost = (jno: number, page: number, type: string, keyword: string) => {
+    navigate(`/post?jno=${jno}&page=${page}&type=${type}&keyword=${keyword}`)
   }
+
   const goRegister = () => {
-    location.href =
-      url +
-      `/register?page=${pageRequestDTO.page}&type=${pageRequestDTO.type}&keyword=${pageRequestDTO.keyword}`
+    navigate(
+      `/register?page=${pageRequestDTO.page}&type=${pageRequestDTO.type}&keyword=${pageRequestDTO.keyword}`,
+      {replace: true}
+    )
   }
   const selChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
     if (e) {
@@ -195,7 +197,7 @@ export function List() {
               <div className="input-group">
                 <div className="input-group-prepend" style={{marginRight: '5px'}}>
                   <select
-                    className="select select-text rounded-sm border-gray-400 w-43"
+                    className="select select-text rounded-sm border-gray-400 w-53"
                     style={{fontSize: '16px'}}
                     ref={refType}
                     name="type"
@@ -210,12 +212,12 @@ export function List() {
                 </div>
                 <input
                   type="text"
-                  className="input input-text rounded-sm border-gray-400 w-47"
+                  className="input input-text rounded-sm border-gray-400 w-63"
                   name="keyword"
                   style={{borderRadius: '5px', fontSize: '16px'}}
                   ref={refKeyword}
                   disabled={disabled}
-                  // readOnly={!inverted}
+                  // readOnly={!disabled}
                   onChange={e => {
                     console.log(refKeyword.current?.readOnly)
                     setKeywords(e.target.value)
@@ -246,7 +248,17 @@ export function List() {
                   {index != 0 ? <hr className="my-4" /> : ''}
                   {/* {index && <hr className="my-4" />} */}
                   <div className="post-preview">
-                    <a href="post.html">
+                    <a
+                      className="page-link"
+                      style={{cursor: 'pointer'}}
+                      onClick={() => {
+                        goPost(
+                          journal.jno,
+                          pageResultDTO.page,
+                          pageRequestDTO.type ?? '',
+                          pageRequestDTO.keyword ?? ''
+                        )
+                      }}>
                       <h2 className="post-title">{journal.title}</h2>
                       <h3 className="post-subtitle w-50 truncate">{journal.content}</h3>
                     </a>
@@ -276,7 +288,9 @@ export function List() {
                   <li className="page-item">
                     <a
                       className="page-link"
-                      href={`/journal/list?page=${Math.max(1, pageResultDTO.start - 1)}`}>
+                      href={`/list?page=${Math.max(1, pageResultDTO.start - 1)}&type=${
+                        query.get('type') ?? ''
+                      }&keyword=${query.get('keyword') ?? ''}`}>
                       Prev
                     </a>
                   </li>
@@ -300,7 +314,9 @@ export function List() {
                   <li className="page-item">
                     <a
                       className="page-link"
-                      href={`/journal/list?page=${pageResultDTO.end + 1}`}>
+                      href={`/list?page=${pageResultDTO.end + 1}&type=${
+                        query.get('type') ?? ''
+                      }&keyword=${query.get('keyword') ?? ''}`}>
                       Next
                     </a>
                   </li>

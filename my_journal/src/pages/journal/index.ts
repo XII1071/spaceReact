@@ -1,4 +1,6 @@
 export * from './About'
 export * from './Contact'
 export * from './List'
-export * from './SamplePost'
+export * from './Post'
+export * from './Register'
+export * from './Modify'
