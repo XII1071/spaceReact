@@ -51,7 +51,7 @@ export function Post() {
     if (type) queryParams.push(`type=${type}`)
     if (keyword) queryParams.push(`keyword=${keyword}`)
 
-    let url = 'http://localhost:8080/apiserver/journal/read/'
+    let url = 'http://52.62.172.179/apiserver/journal/read/'
     if (queryParams.length > 0) url += jno + '?' + queryParams.join('&')
 
     if (token) {
@@ -100,7 +100,7 @@ export function Post() {
 
   // Ajax로 리뷰 불러오기
   const loadCommentsJSON = () => {
-    const url = 'http://localhost:8080/apiserver/comments/all/'
+    const url = 'http://52.62.172.179/apiserver/comments/all/'
     const listGroup = document.querySelector('.comments-list')
     fetch(url + jno, {method: 'GET', headers: {Authorization: `Bearer ${token}`}})
       .then(response => response.json())
@@ -198,7 +198,7 @@ export function Post() {
             }
             document.querySelector('.modal-footer .remove').onclick = function () {
               let cno = document.querySelector(".modal-body input[name='cno']")
-              const url = 'http://localhost:8080/apiserver/comments/'
+              const url = 'http://52.62.172.179/apiserver/comments/'
               fetch(url + jno + '/' + cno.value, {
                 method: 'DELETE',
                 headers: {'Content-type': 'application/json'}
@@ -221,20 +221,14 @@ export function Post() {
         }
       })
   }
-  const goModify = () => {
-    navigate('/modify', {
-      state: {
-        journalDTO,
-        page,
-        type,
-        keyword,
-        jno
-      }
-    })
-  }
 
   const goList = (page: string, type: string, keyword: string) => {
     navigate(`/list?page=${page}&type=${type}&keyword=${keyword}`, {replace: true})
+  }
+  const goModify = (jno: string, page: string, type: string, keyword: string) => {
+    navigate(`/modify?jno=${jno}&page=${page}&type=${type}&keyword=${keyword}`, {
+      replace: true
+    })
   }
 
   return (
@@ -264,7 +258,7 @@ export function Post() {
         <div className="container px-4 px-lg-5">
           <div className="row gx-4 gx-lg-5 justify-content-center">
             <div className="col-md-10 col-lg-8 col-xl-7">
-              <form action="/feeds/modify" method="post" id="frmSend">
+              <form action="/journal/modify" method="post" id="frmSend">
                 <div className="form-group">
                   <label>Jno</label>
                   <input
@@ -348,9 +342,11 @@ export function Post() {
                   <input type="hidden" name="type" value={type} />
                   <input type="hidden" name="keyword" value={keyword} />
                   <button
+                    className="btn btn-primary p-2"
                     type="button"
-                    className="btn btn-primary btnModi p-2"
-                    onClick={goModify}>
+                    onClick={() => {
+                      goModify(jno, page, type ?? '', keyword ?? '')
+                    }}>
                     Modify
                   </button>
                   <button
@@ -375,14 +371,14 @@ export function Post() {
                           key={idx}
                           src={defaultImg}
                           style={{display: 'inline-block', marginRight: '20px'}}
-                          alt="Feed Thumbnail"
+                          alt="Journal Thumbnail"
                         />
                       ) : (
                         <img
                           key={idx}
-                          src={`http://localhost:8080/apiserver/display?fileName=${photosDTO.thumbnailURL}`}
+                          src={`http://52.62.172.179/apiserver/display?fileName=${photosDTO.thumbnailURL}`}
                           style={{display: 'inline-block', marginRight: '20px'}}
-                          alt="Feed Thumbnail"
+                          alt="Journal Thumbnail"
                           onError={addDefaultImg}
                         />
                       )}

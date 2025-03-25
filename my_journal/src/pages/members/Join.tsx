@@ -71,7 +71,7 @@ export function Join() {
     try {
       new Promise((resolve, reject) => {
         // prettier ignore
-        fetch('http://localhost:8080/apiserver/members/register', {
+        fetch('http://52.62.172.179/apiserver/members/register', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({

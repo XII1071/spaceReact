@@ -91,7 +91,7 @@ export function List() {
       queryParams.push(`keyword=${keyword}`)
     }
 
-    let url = 'http://localhost:8080/apiserver/journal/list'
+    let url = 'http://52.62.172.179/apiserver/journal/list'
     if (queryParams.length > 0) url += '?' + queryParams.join('&')
 
     if (token) {
@@ -134,7 +134,6 @@ export function List() {
   const goPost = (jno: number, page: number, type: string, keyword: string) => {
     navigate(`/post?jno=${jno}&page=${page}&type=${type}&keyword=${keyword}`)
   }
-
   const goRegister = () => {
     navigate(
       `/register?page=${pageRequestDTO.page}&type=${pageRequestDTO.type}&keyword=${pageRequestDTO.keyword}`,

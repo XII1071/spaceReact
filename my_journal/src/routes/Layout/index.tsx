@@ -12,9 +12,9 @@ export default function Layout() {
         <Route path="/list" element={<List />} />
         <Route path="/about" element={<About />} />
         <Route path="/post" element={<Post />} />
+        <Route path="/modify" element={<Modify />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/modify" element={<Modify />} />
       </Routes>
       <Footer />
     </>
