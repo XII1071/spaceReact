@@ -25,7 +25,7 @@ export function UploadResult({uploadedFiles = []}: UploadResultProps) {
 
   // 이미지 삭제 요청 함수
   const handleRemove = async (fileName: string) => {
-    const removeUrl = `http://52.62.172.179/apiserver/removeFile?fileName=${fileName}`
+    const removeUrl = `http://localhost:8080/apiserver/removeFile?fileName=${fileName}`
 
     try {
       const response = await fetch(removeUrl, {
@@ -64,7 +64,7 @@ export function UploadResult({uploadedFiles = []}: UploadResultProps) {
                   X
                 </button>
                 <img
-                  src={`http://52.62.172.179/apiserver/display?fileName=${file.thumbnailURL}`}
+                  src={`http://localhost:8080/apiserver/display?fileName=${file.thumbnailURL}`}
                   alt="Uploaded"
                 />
               </div>

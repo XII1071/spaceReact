@@ -40,7 +40,7 @@ export function Login() {
       new Promise((resolve, reject) => {
         // prettier ignore
         fetch(
-          'http://52.62.172.179/apiserver/auth/login?email=' +
+          'http://localhost:8080/apiserver/auth/login?email=' +
             email +
             '&password=' +
             pass,

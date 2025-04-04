@@ -20,7 +20,7 @@ export function Register() {
 
   useEffect(() => {
     const email = sessionStorage.getItem('email')
-    const url = 'http://52.62.172.179/apiserver/members/get'
+    const url = 'http://localhost:8080/apiserver/members/get'
     if (token) {
       fetch(url + '?email=' + email, {
         method: 'GET',
@@ -65,7 +65,7 @@ export function Register() {
   function showResult(arr: []) {
     const uploadUL = document.querySelector('.uploadResult ul')
     let str = ''
-    const url = 'http://52.62.172.179/apiserver/display'
+    const url = 'http://localhost:8080/apiserver/display'
     for (let i = 0; i < arr.length; i++) {
       str += `<li data-name='${arr[i].fileName}' data-path='${arr[i].folderPath}'
       data-uuid='${arr[i].uuid}' data-file='${arr[i].imageURL}'><div>
@@ -77,7 +77,7 @@ export function Register() {
     const removeBtns = document.querySelectorAll('.removeBtn')
     for (let i = 0; i < removeBtns.length; i++) {
       removeBtns[i].onclick = function () {
-        const removeUrl = 'http://52.62.172.179/apiserver/removeFile?fileName='
+        const removeUrl = 'http://localhost:8080/apiserver/removeFile?fileName='
         const targetLi = this.closest('li')
         const fileName = targetLi.dataset.file
         console.log(fileName)
@@ -122,7 +122,7 @@ export function Register() {
     for (const value of formData.values()) console.log(value)
     console.log('>>', token)
     if (token) {
-      let url = 'http://52.62.172.179/apiserver/uploadAjax'
+      let url = 'http://localhost:8080/apiserver/uploadAjax'
       fetch(url, {
         method: 'POST',
         body: formData,
@@ -188,7 +188,7 @@ export function Register() {
     }
     let resMessage = ''
     if (token) {
-      fetch('http://52.62.172.179/apiserver/journal/register', {
+      fetch('http://localhost:8080/apiserver/journal/register', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,

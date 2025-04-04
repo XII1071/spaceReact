@@ -51,7 +51,7 @@ export function Post() {
     if (type) queryParams.push(`type=${type}`)
     if (keyword) queryParams.push(`keyword=${keyword}`)
 
-    let url = 'http://52.62.172.179/apiserver/journal/read/'
+    let url = 'http://localhost:8080/apiserver/journal/read/'
     if (queryParams.length > 0) url += jno + '?' + queryParams.join('&')
 
     if (token) {
@@ -100,7 +100,7 @@ export function Post() {
 
   // Ajax로 리뷰 불러오기
   const loadCommentsJSON = () => {
-    const url = 'http://52.62.172.179/apiserver/comments/all/'
+    const url = 'http://localhost:8080/apiserver/comments/all/'
     const listGroup = document.querySelector('.comments-list')
     fetch(url + jno, {method: 'GET', headers: {Authorization: `Bearer ${token}`}})
       .then(response => response.json())
@@ -198,7 +198,7 @@ export function Post() {
             }
             document.querySelector('.modal-footer .remove').onclick = function () {
               let cno = document.querySelector(".modal-body input[name='cno']")
-              const url = 'http://52.62.172.179/apiserver/comments/'
+              const url = 'http://localhost:8080/apiserver/comments/'
               fetch(url + jno + '/' + cno.value, {
                 method: 'DELETE',
                 headers: {'Content-type': 'application/json'}
@@ -376,7 +376,7 @@ export function Post() {
                       ) : (
                         <img
                           key={idx}
-                          src={`http://52.62.172.179/apiserver/display?fileName=${photosDTO.thumbnailURL}`}
+                          src={`http://localhost:8080/apiserver/display?fileName=${photosDTO.thumbnailURL}`}
                           style={{display: 'inline-block', marginRight: '20px'}}
                           alt="Journal Thumbnail"
                           onError={addDefaultImg}

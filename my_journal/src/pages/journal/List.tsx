@@ -91,7 +91,7 @@ export function List() {
       queryParams.push(`keyword=${keyword}`)
     }
 
-    let url = 'http://52.62.172.179/apiserver/journal/list'
+    let url = 'http://localhost:8080/apiserver/journal/list'
     if (queryParams.length > 0) url += '?' + queryParams.join('&')
 
     if (token) {

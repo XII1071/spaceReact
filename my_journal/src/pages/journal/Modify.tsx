@@ -87,7 +87,7 @@ export function Modify() {
   function showResult(arr: []) {
     const uploadUL = document.querySelector('.uploadResult ul')
     let str = ''
-    const url = 'http://52.62.172.179/apiserver/display'
+    const url = 'http://localhost:8080/apiserver/display'
     for (let i = 0; i < arr.length; i++) {
       str += `<li data-name='${arr[i].fileName}' data-path='${arr[i].folderPath}'
       data-uuid='${arr[i].uuid}' data-file='${arr[i].imagesURL}'><div>
@@ -99,7 +99,7 @@ export function Modify() {
     const removeBtns = document.querySelectorAll('.removeBtn')
     for (let i = 0; i < removeBtns.length; i++) {
       removeBtns[i].onclick = function () {
-        const removeUrl = 'http://52.62.172.179/apiserver/removeFile?fileName='
+        const removeUrl = 'http://localhost:8080/apiserver/removeFile?fileName='
         const targetLi = this.closest('li')
         const fileName = targetLi.dataset.file
         console.log(fileName)
@@ -144,7 +144,7 @@ export function Modify() {
     for (const value of formData.values()) console.log(value)
     console.log('>>', token)
     if (token) {
-      let url = 'http://52.62.172.179/apiserver/uploadAjax'
+      let url = 'http://localhost:8080/apiserver/uploadAjax'
       fetch(url, {
         method: 'POST',
         body: formData,
@@ -165,7 +165,7 @@ export function Modify() {
     if (type) queryParams.push(`type=${type}`)
     if (keyword) queryParams.push(`keyword=${keyword}`)
 
-    let url = 'http://52.62.172.179/apiserver/journal/modify/'
+    let url = 'http://localhost:8080/apiserver/journal/modify/'
     if (queryParams.length > 0) url += jno + '?' + queryParams.join('&')
 
     if (token) {
@@ -235,7 +235,7 @@ export function Modify() {
     try {
       new Promise((resolve, reject) => {
         // prettier ignore
-        fetch('http://52.62.172.179/apiserver/journal/modify', {
+        fetch('http://localhost:8080/apiserver/journal/modify', {
           method: 'PUT',
           headers: {'Content-Type': 'application/json', Authorization: `Bearer ${token}`},
           body: JSON.stringify(formDataObj)
@@ -425,6 +425,36 @@ export function Modify() {
                     }}>
                     Back
                   </button>
+                  <button
+                    type="button"
+                    className="btn btn-danger p-2 ms-2"
+                    onClick={() => {
+                      if (window.confirm('정말 삭제하시겠습니까?')) {
+                        fetch(`http://localhost:8080/apiserver/journal/remove/${jno}`, {
+                          method: 'DELETE',
+                          headers: {
+                            Authorization: `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify({
+                            page: page,
+                            size: '10',
+                            type: type,
+                            keyword: keyword
+                          })
+                        })
+                          .then(res => res.json())
+                          .then(data => {
+                            alert(data.msg)
+                            navigate(
+                              `/list?page=${data.page}&type=${data.type}&keyword=${data.keyword}`
+                            )
+                          })
+                          .catch(err => console.log('삭제 중 오류:', err))
+                      }
+                    }}>
+                    Delete
+                  </button>
                 </div>
               </form>
               <div className="uploadResult">
@@ -448,7 +478,7 @@ export function Modify() {
                       ) : (
                         <img
                           key={idx}
-                          src={`http://52.62.172.179/apiserver/display?fileName=${photosDTO.thumbnailURL}`}
+                          src={`http://localhost:8080/apiserver/display?fileName=${photosDTO.thumbnailURL}`}
                           style={{display: 'inline-block', marginRight: '20px'}}
                           alt="Journal Thumbnail"
                           onError={addDefaultImg}

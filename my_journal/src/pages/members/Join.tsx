@@ -71,7 +71,7 @@ export function Join() {
     try {
       new Promise((resolve, reject) => {
         // prettier ignore
-        fetch('http://52.62.172.179/apiserver/members/register', {
+        fetch('http://localhost:8080/apiserver/members/register', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
@@ -122,8 +122,8 @@ export function Join() {
           </form>
           <span className="mt-6 text-lg text-grey-dark font-sans md:font-serif">
             Create account?
-            <Link className="ml-5 text-lg" to="/join">
-              Join
+            <Link className="ml-5 text-lg" to="/Login">
+              Login
             </Link>
           </span>
         </div>
